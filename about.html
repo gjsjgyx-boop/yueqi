@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#04050A">
+<title>关于本站 · 联系方式与版权声明 | 中国传统乐器</title>
+<meta name="description" content="中国传统乐器网站：联系方式、内容声明与版权说明。">
+  <meta property="og:title" content="关于本站 · 联系方式与版权声明">
+  <meta property="og:description" content="联系方式、内容声明与版权说明。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/anim/八音关系图-02.jpg">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23F0533A'/%3E%3Ctext x='50' y='72' font-size='68' text-anchor='middle' fill='%23fff' font-family='serif'%3E乐%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<div class="atmos" aria-hidden="true">
+  <span class="atmos__glow atmos__glow--a"></span>
+  <span class="atmos__glow atmos__glow--b"></span>
+  <span class="atmos__glow atmos__glow--c"></span>
+  <span class="atmos__grid"></span>
+</div>
+<canvas id="ink-canvas" aria-hidden="true"></canvas>
+<div class="atmos__grain" aria-hidden="true"></div>
+<div class="atmos__vignette" aria-hidden="true"></div>
+<div class="curtain" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="中国传统乐器 首页">
+    <span class="brand__seal" aria-hidden="true">乐</span>
+    <span class="brand__text">
+      <span class="brand__cn">中国传统乐器</span>
+      <span class="brand__en">Chinese Traditional Instruments</span>
+    </span>
+  </a>
+  <nav class="nav__links" aria-label="主导航">
+    <a class="nav__link" href="index.html">首页</a>
+    <a class="nav__link" href="gallery.html">乐器图鉴</a>
+    <a class="nav__link" href="culture.html">八音文化</a>
+    <a class="nav__link" href="he.html">第 72 件 · 龢</a>
+    <a class="nav__link" href="about.html">关于本站</a>
+  </nav>
+  <a class="nav__cta" href="gallery.html">乐器图鉴 →</a>
+  <button class="nav__burger" aria-label="打开菜单"><span></span></button>
+</header>
+
+<main class="page">
+
+  <section class="gallery-head">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="面包屑">
+        <a href="index.html">首页</a><span>/</span>关于本站
+      </nav>
+      <p class="eyebrow enter enter--1">About · 联系 · 声明 · 版权</p>
+      <h1 class="h-display" style="font-size:clamp(34px,7vw,76px)">
+        <span class="line-mask"><span>关于本站</span></span>
+      </h1>
+      <div class="gallery-head__row enter enter--3">
+        <p class="lede">这里只放三件事：<b>联系方式</b>、<b>内容声明</b>与<b>版权说明</b>。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 联系方式 ===== -->
+  <section class="section" id="contact" style="padding-top:clamp(24px,3vw,40px)">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">01 · Contact · 联系方式</p>
+          <h2 class="h-section">找到<span class="grad">我</span></h2>
+          <p class="lede">指正错误、补充素材、课件交流或合作，都可以通过下面任何一种方式找到我。</p>
+        </div>
+      </div>
+      <div class="credit-grid" data-stagger>
+        <div class="credit-card" data-tilt="4">
+          <p class="credit-card__title">Contact · 联系方式</p>
+          <div class="credit-kv">
+            <div class="credit-kv__row"><span class="credit-kv__k">邮箱</span>
+              <span class="credit-kv__v"><a href="mailto:37864780312@qq.com">37864780312@qq.com</a></span></div>
+            <div class="credit-kv__row"><span class="credit-kv__k">小红书</span>
+              <span class="credit-kv__v">哈哈儿</span></div>
+            <div class="credit-kv__row"><span class="credit-kv__k">抖音</span>
+              <span class="credit-kv__v">哈哈AI工坊</span></div>
+            <div class="credit-kv__row"><span class="credit-kv__k">微信号</span>
+              <span class="credit-kv__v">哈哈AIGC</span></div>
+          </div>
+        </div>
+        <figure class="qr-card" data-reveal="up">
+          <img src="assets/qr/微信二维码.jpg" width="928" height="1380" loading="lazy"
+               alt="微信二维码：扫码添加微信号「哈哈AIGC」">
+          <figcaption>微信扫码添加「哈哈AIGC」<br>素材指正 · 课件交流 · 合作</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <!-- ===== 声明 ===== -->
+  <section class="section" id="notice">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">02 · Notice · 内容声明</p>
+          <h2 class="h-section">内容来源与<span class="grad">使用声明</span></h2>
+        </div>
+      </div>
+      <div class="credit-card" data-tilt="4" data-reveal="up">
+        <ul class="credit-list">
+          <li><b>用途</b>：本站内容仅供学习与文化普及，<b>不作为学术引用依据</b>。</li>
+          <li><b>资料来源</b>：乐器名录、历史年代、非遗编号等整理自公开百科条目、博物馆与非遗公开资料，仍难免疏漏或偏差 —— 如有错误，敬请见谅，欢迎指正。</li>
+          <li><b>AI 辅助</b>：部分文字由 AI 协助整理润色；站内配图与课件页面多为 AI 辅助生成的示意图，<b>不是实拍照片</b>。</li>
+          <li><b>音频</b>：站内播放的录音均为来源清楚的公有领域（PD）或知识共享（CC0 / CC BY / CC BY-SA）素材，并在详情页逐条署名；版权未核实的录音仅作本地参考，<b>不在网站上发布</b>。</li>
+          <li><b>课件</b>：各乐器的 PPT 模版课件由本人整理制作，可从详情页顶部下载。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <!-- ===== 版权 ===== -->
+  <section class="section" id="credits">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">03 · Copyright · 版权</p>
+          <h2 class="h-section">版权<span class="grad">归属</span></h2>
+        </div>
+      </div>
+      <div class="credit-card" data-tilt="4" data-reveal="up">
+        <ul class="credit-list">
+          <li><b>本站原创</b>：页面结构、分类口径、PPT 模版课件，以及第 72 件「龢」的推演设计，均为本人整理与撰写 © 本站。</li>
+          <li><b>引用素材</b>：引用的公开资料、图片与音频版权归原权利人所有，详情页已尽可能逐条署名并附原始链接。</li>
+          <li><b>转载</b>：如需转载本站原创内容，请注明出处并附站内链接。</li>
+          <li><b>侵权处理</b>：如果本站内容侵犯了您的权益，请通过上方联系方式告知，核实后会尽快删除或更正。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <span class="brand__seal" aria-hidden="true">乐</span>
+      <p class="footer__cn">中国传统乐器</p>
+      <p class="footer__en">Chinese Traditional Instruments</p>
+    </div>
+    <div class="footer__col">
+      <p class="footer__h">页面</p>
+      <ul>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="gallery.html">乐器图鉴</a></li>
+        <li><a href="culture.html">八音文化</a></li>
+        <li><a href="he.html">第 72 件 · 龢</a></li>
+        <li><a href="about.html">关于本站</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <p class="footer__h">分类</p>
+      <ul>
+        <li><a href="gallery.html?cat=chui">吹管乐器</a></li>
+        <li><a href="gallery.html?cat=tan">弹拨乐器</a></li>
+        <li><a href="gallery.html?cat=la">拉弦乐器</a></li>
+        <li><a href="gallery.html?cat=da">打击乐器</a></li>
+        <li><a href="detail.html?id=he">合鸣新制 · 龢</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer__bottom">
+    <span>© <span id="year">2026</span> 中国传统乐器 · 内容整理自公开资料，仅供学习交流</span>
+    <span><b id="fillCount">17</b> / 72 件已配图 · 其余为占位框 —— 替换即用</span>
+  </div>
+  <div class="wrap footer__credit">
+    <span><b>版权说明</b>：部分来自网络 · 部分 AI 辅助生成 · 部分个人整理，如有错误，敬请见谅。</span>
+    <span>邮箱 <a href="mailto:37864780312@qq.com">37864780312@qq.com</a></span>
+    <span>小红书 <b>哈哈儿</b></span>
+    <span>抖音 <b>哈哈AI工坊</b></span>
+    <span>微信号 <b>哈哈AIGC</b></span>
+    <span><a href="about.html#credits">版权与联系 →</a></span>
+  </div>
+</footer>
+
+<script src="js/pinyin.js"></script>
+<script src="assets/manifest.js"></script>
+<script src="js/data/chui.js"></script>
+<script src="js/data/tan.js"></script>
+<script src="js/data/la.js"></script>
+<script src="js/data/da.js"></script>
+<script src="js/data/he.js"></script>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/bgm.js"></script>
+<script>
+  (function () {
+    var y = document.getElementById('year');
+    if (y) y.textContent = String(new Date().getFullYear());
+  })();
+</script>
+</body>
+</html>

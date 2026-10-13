@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#04050A">
+<title>第 72 件「龢」· 一件还不存在的乐器是怎么推出来的 | 中国传统乐器</title>
+<meta name="description" content="把 71 件中国传统乐器的长处归成十二条器之能，再看它们怎么互相打架，写出八条命题，最后设计出一件八音俱备、一器四法的新乐器——龢。附 71 件逐条对照表与合成试听。">
+<meta name="keywords" content="龢,推演新制,第72件,八音,中国乐器,乐器设计,概念乐器,八音各九">
+<meta property="og:title" content="第 72 件「龢」· 设计推演">
+<meta property="og:description" content="71 件乐器的长处 → 六组冲突 → 八条命题 → 一件八音俱备的新乐器。">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23F0533A'/%3E%3Ctext x='50' y='72' font-size='68' text-anchor='middle' fill='%23fff' font-family='serif'%3E乐%3C/text%3E%3C/svg%3E">
+</head>
+<body data-cat="he">
+
+<div class="atmos" aria-hidden="true">
+  <span class="atmos__glow atmos__glow--a"></span>
+  <span class="atmos__glow atmos__glow--b"></span>
+  <span class="atmos__glow atmos__glow--c"></span>
+  <span class="atmos__grid"></span>
+</div>
+<canvas id="ink-canvas" aria-hidden="true"></canvas>
+<div class="atmos__grain" aria-hidden="true"></div>
+<div class="atmos__vignette" aria-hidden="true"></div>
+<div class="curtain" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="中国传统乐器 首页">
+    <span class="brand__seal" aria-hidden="true">乐</span>
+    <span class="brand__text">
+      <span class="brand__cn">中国传统乐器</span>
+      <span class="brand__en">Chinese Traditional Instruments</span>
+    </span>
+  </a>
+  <nav class="nav__links" aria-label="主导航">
+    <a class="nav__link" href="index.html">首页</a>
+    <a class="nav__link" href="gallery.html">乐器图鉴</a>
+    <a class="nav__link" href="culture.html">八音文化</a>
+    <a class="nav__link" href="he.html">第 72 件 · 龢</a>
+    <a class="nav__link" href="about.html">关于本站</a>
+  </nav>
+  <a class="nav__cta" href="detail.html?id=he">进入详情页 →</a>
+  <button class="nav__burger" aria-label="打开菜单"><span></span></button>
+</header>
+
+<main class="page">
+
+  <!-- ===== 页头 ===== -->
+  <section class="dev-head">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="面包屑">
+        <a href="index.html">首页</a><span>/</span>第 72 件 · 龢
+      </nav>
+
+      <div class="dev-head__grid">
+        <div>
+          <p class="eyebrow enter enter--1">Devised · 第 72 件 · 推演新制</p>
+
+          <h1 class="dev-head__title">
+            <span class="line-mask"><span>龢</span></span>
+          </h1>
+          <p class="dev-head__py">Hé · All Eight</p>
+
+          <div class="hero__sub enter enter--3" style="margin-top:var(--sp-5)">
+            <p>本站收录的 <b id="devHistory">71</b> 件乐器，是这片土地上长出来的。<br>
+              第 <b id="devTotal">72</b> 件不是 —— 它由这 71 件推出来：<br>
+              每一条设计，都能追到某一件真乐器身上。</p>
+          </div>
+
+          <div class="dev-head__row enter enter--4">
+            <a class="btn btn--primary" href="detail.html?id=he" data-magnet="10" data-ripple>
+              <span class="btn__label">看它的详情页
+                <svg class="ico btn__arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </a>
+            <a class="btn btn--ghost" href="#listen" data-magnet="10" data-ripple>
+              <span class="btn__label">先听一段合成音</span>
+            </a>
+          </div>
+        </div>
+
+        <aside class="dev-plate enter enter--5">
+          <span class="dev-plate__seal" aria-hidden="true">龢</span>
+          <div class="dev-plate__kv">
+            <div class="dev-plate__row"><span class="dev-plate__k">NAME</span><span class="dev-plate__v">龢（八音龢）</span></div>
+            <div class="dev-plate__row"><span class="dev-plate__k">PINYIN</span><span class="dev-plate__v">Hé</span></div>
+            <div class="dev-plate__row"><span class="dev-plate__k">CLASS</span><span class="dev-plate__v">合鸣新制 · 第 5 类，独一件</span></div>
+            <div class="dev-plate__row"><span class="dev-plate__k">STATUS</span><span class="dev-plate__v"><b>不存在</b> · 本站设计</span></div>
+            <div class="dev-plate__row"><span class="dev-plate__k">BODIES</span><span class="dev-plate__v"><b>72</b> 件发声体（八音各九）</span></div>
+            <div class="dev-plate__row"><span class="dev-plate__k">METHOD</span><span class="dev-plate__v">吹 · 弹 · 拉 · 打 · 四肢分工</span></div>
+            <div class="dev-plate__row"><span class="dev-plate__k">RANGE</span><span class="dev-plate__v">五个八度（对齐曾侯乙编钟）</span></div>
+            <div class="dev-plate__row"><span class="dev-plate__k">TUNING</span><span class="dev-plate__v">十二律吕为骨 · 五声为用</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 主图 ===== -->
+  <section class="section" style="padding-top:clamp(10px,2vw,20px)">
+    <div class="wrap">
+      <figure class="media media--img media--16x9" data-reveal="scale">
+        <img class="media__el" src="assets/img/龢-主图.jpg"
+             alt="「龢」主图：八音俱全的第 72 件概念特写（AI 辅助生成示意，非实物照片）"
+             loading="lazy" decoding="async">
+        <span class="media__tag">IMG</span>
+        <figcaption class="media__cap">主图 · 龢 概念特写（站内 AI 辅助生成示意，<b>非实物照片</b>）· 与详情页主图同一张</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== 声明 ===== -->
+  <section class="section" style="padding-top:clamp(18px,3vw,32px)">
+    <div class="wrap">
+      <div class="callout" style="--cat:var(--cat-he)" data-reveal="up">
+        <p class="callout__label">先说清楚 · 这不是文物</p>
+        <p>本页所有文字都是<b>设计说明</b>，不是史料。全站 71 件乐器有出土实物、有文献、有传承人；第 72 件什么都没有 —— 它是一份图纸，一次推演，一个「如果把这些长处排好次序会怎样」的答案。
+        我们把它写进这个网站，不是要让它冒充古董，而是因为：<b>把 71 件东西的长处真正想清楚，本身就是理解它们最好的方式。</b></p>
+      </div>
+
+      <div class="callout" style="--cat:var(--cat-he);margin-top:var(--sp-4)" data-reveal="up">
+        <p class="callout__label">顺带一说 · 古籍里真有一个「龢」</p>
+        <p>它当然不是第 72 件。<b>「龢」在文献里是一件真实存在过的乐器 —— 小笙</b>：《爾雅·釋樂》说「大笙謂之巢，小笙謂之和」，注里更写明「和，十三簧」；
+        《說文解字》释「龢，調也。从龠，禾聲」，而《康熙字典》「和」字条把〔龢〕列为古文 ——
+        「和」这个字本身，就是从这件乐器来的。《周禮·春官·笙師》掌教吹竽笙，《詩經·小雅·鹿鳴》说「吹笙鼓簧」，都是它出场的地方。</p>
+        <p style="margin-top:10px">本站的第 72 件沿用了这个名字，但它是一件<b>推演出来的器</b>，与那件十三簧的小笙并不是同一件东西 ——
+        同名，不同物，这一点必须说在前面。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 01 起点 ===== -->
+  <section class="section" id="abilities" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">01 · 起点</p>
+          <h2 class="h-section">先把 71 件乐器的<span class="grad">长处</span>数一遍</h2>
+          <p class="lede">不排年表，不比音域，只问一件事：这件乐器最擅长什么？答案归到最后是十二条 —— 再加一条就会和前面重复，少一条就有乐器的本事没处安放。</p>
+        </div>
+      </div>
+      <div class="ability-grid" id="abilityGrid" data-stagger></div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <!-- ===== 02 冲突 ===== -->
+  <section class="section" id="conflicts">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">02 · 打架</p>
+          <h2 class="h-section">十二条长处里，有一半<span class="grad">互相拆台</span></h2>
+          <p class="lede">这才是「集所有优点」最难的地方。优点不是堆起来就行：弹拨的颗粒留不住，吹拉的线咬不住字；四类奏法都要手，人只有两只。所谓集优点，其实是<b>给每一对矛盾找一处物理上的分工</b>。</p>
+        </div>
+      </div>
+      <div class="conflict-list" id="conflictList" data-stagger></div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <!-- ===== 03 命题 ===== -->
+  <section class="section" id="props">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">03 · 命题</p>
+          <h2 class="h-section">于是写下<span class="grad">八条命题</span></h2>
+          <p class="lede">每一条都配一句「怎么算成立」。不能检验的说法，写进设计里只会变成漂亮话。</p>
+        </div>
+      </div>
+      <div class="props" id="propList" data-stagger></div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <!-- ===== 04 设计 ===== -->
+  <section class="section" id="design">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">04 · 设计</p>
+          <h2 class="h-section">一件器，<span class="grad">八音各九</span></h2>
+          <p class="lede">外观看像一张矮而长的小几：盘坐其后，口中吹簧与管，左手按弦，右手弹与击，双足踏轮。八种材料各出九件发声体，全部朝台面下的陶制九室耦合 —— 这是「八音和鸣」在物理上唯一说得通的做法。</p>
+        </div>
+      </div>
+
+      <figure class="media media--img media--16x9" data-reveal="scale" style="margin-bottom:var(--sp-6)">
+        <img class="media__el" src="assets/img/龢-概念总图.svg" alt="「龢」概念总图：器台、九弦、木轮、铜钟、玉磬、陶腔与竹管的相对位置"
+             loading="lazy" decoding="async">
+        <span class="media__tag">IMG</span>
+        <figcaption class="media__cap">概念总图 · 站内自绘示意（非实物照片）：器台通长 168cm，八音部件各就各位</figcaption>
+      </figure>
+
+      <figure class="media media--img media--16x9" data-reveal="scale" style="margin-top:var(--sp-6)">
+        <img class="media__el" src="assets/img/龢-分解图.png" alt="「龢」3D 爆炸分解图：八音各九，按装配顺序从器台上拆开"
+             loading="lazy" decoding="async">
+        <span class="media__tag">IMG</span>
+        <figcaption class="media__cap">3D 爆炸分解图 · 站内概念图（AI 辅助生成示意，非实物照片）：七十二件发声体按装配顺序拆开，装回去就是那台器</figcaption>
+      </figure>
+
+      <div class="bayin9" id="bayin9" data-reveal="up"></div>
+
+      <div class="media-stack" style="margin-top:var(--sp-7)">
+        <figure class="media media--img media--16x9">
+          <img class="media__el" src="assets/img/龢-结构图.svg" alt="「龢」结构图：八种材料各自的发声体与公共共鸣腔的耦合关系"
+               loading="lazy" decoding="async">
+          <span class="media__tag">IMG</span>
+          <figcaption class="media__cap">结构图 · 八套发声体共用一个陶腔</figcaption>
+        </figure>
+        <figure class="media media--anim media--16x9">
+          <img class="media__el" src="assets/anim/龢-发声原理.svg" alt="「龢」发声原理动画：口中气息、左手按弦、右手弹击、双足踏轮四路同时驱动"
+               loading="lazy" decoding="async">
+          <span class="media__tag">ANIM</span>
+          <figcaption class="media__cap">发声原理 · 四路激励，一个共鸣腔（SVG 动画）</figcaption>
+        </figure>
+      </div>
+
+      <div class="sec-head" style="margin-top:var(--sp-8)">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">04b · 四肢分工</p>
+          <h2 class="h-section" style="font-size:clamp(22px,3vw,32px)">一个人，<span class="grad">四路同时开工</span></h2>
+          <p class="lede">这是整件设计里最关键的一处分配：口管持续的和声，脚管永不换向的弓，左手管韵与律，右手管咬字。少了这一条，「集四类于一身」就只是把乐器堆在一起。</p>
+        </div>
+      </div>
+      <div class="limbs" id="limbGrid" data-stagger></div>
+
+      <div class="grid" data-stagger style="grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin-top:var(--sp-7)">
+        <div class="card" data-tilt="6" data-spot><span class="spot"></span>
+          <p class="card__title">形制 · FORM</p>
+          <h3 class="h-card">通长 1680mm</h3>
+          <p style="font-size:13.5px;color:var(--bone-3);margin-top:10px;line-height:1.9">
+            器台通长 1680mm、宽 620mm、含架高 780mm，盘坐演奏。九弦分三组（有柱 / 无柱 / 摇杆），弦长 1100–1300mm；
+            陶制九室总容积约 24 升，按九个音区分隔。木轮直径 180mm，包马尾、上松香，踏板传动比 1:1.6。</p>
+        </div>
+        <div class="card" data-tilt="6" data-spot><span class="spot"></span>
+          <p class="card__title">律制 · TUNING</p>
+          <h3 class="h-card">十二律吕为骨，五声为用</h3>
+          <p style="font-size:13.5px;color:var(--bone-3);margin-top:10px;line-height:1.9">
+            金九钟按十二律吕铸定（九钟十八音位），石九磬补其缺音；丝九弦定音以钟磬为准，木柱可移，故能旋宫转调。
+            实际演奏以五声为骨架，七声与变音由按弦取用 —— 与今天民族乐队的做法一致。</p>
+        </div>
+        <div class="card" data-tilt="6" data-spot><span class="spot"></span>
+          <p class="card__title">音域 · RANGE</p>
+          <h3 class="h-card">五个八度</h3>
+          <p style="font-size:13.5px;color:var(--bone-3);margin-top:10px;line-height:1.9">
+            低端靠革胡式的大陶室与低音擦弦，高端靠柳琴式的短弦与碰铃、小锣。整体跨度按曾侯乙编钟的五个八度设定 ——
+            那一套两千四百年前的钟，已经把中国人对音域的胃口写清楚了。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <!-- ===== 05 71 件对照表 ===== -->
+  <section class="section" id="map">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">05 · 逐条对照</p>
+          <h2 class="h-section">71 件乐器，各自贡献了<span class="grad">一条</span></h2>
+          <p class="lede">这张表是整份设计的底稿，一共 <b id="mapCount">71</b> 行：左边是乐器与它最擅长的一件事，右边是这件事落在「龢」的哪一处。
+          点乐器名可以直接进它的详情页 —— 想反驳这份设计，最好的办法是先去看看原件。</p>
+        </div>
+      </div>
+
+      <div class="maptable-wrap">
+        <table class="maptable">
+          <thead>
+            <tr>
+              <th>类</th>
+              <th>乐器</th>
+              <th>最擅长的一件事</th>
+              <th>在「龢」上的落点</th>
+            </tr>
+          </thead>
+          <tbody id="mapBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <!-- ===== 06 试听 ===== -->
+  <section class="section" id="listen">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">06 · 试听</p>
+          <h2 class="h-section">听一段<span class="grad">合成音</span></h2>
+          <p class="lede">这件乐器没有录音 —— 因为没有人演奏过。所以这里放的是现场合成：用浏览器把四种发声法各写一遍，让它们同时响。它不是「龢」的声音，只是「龢」的思路能不能听。</p>
+        </div>
+      </div>
+
+      <div class="listen" data-reveal="up">
+        <div>
+          <button class="listen__btn" id="listenBtn" type="button" aria-pressed="false">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M8 5.5v13l11-6.5z"/></svg>
+            <span class="listen__label">听一段合成音（15 秒）</span>
+          </button>
+          <p class="listen__note" id="listenStatus">这是一段现场合成的试听，不是乐器录音 —— 因为这件乐器还不存在。</p>
+          <div class="listen__voices">
+            <span class="chip">匏 · 自由簧（持续）</span>
+            <span class="chip">丝 · 轮擦（线）</span>
+            <span class="chip">丝 · 拨弦（点）</span>
+            <span class="chip">金 · 钟磬</span>
+            <span class="chip">革木 · 鼓与音块</span>
+          </div>
+        </div>
+        <div>
+          <div class="listen__wave" id="listenWave" aria-hidden="true"></div>
+          <p class="listen__note">五行声部同时在场，是本页八条命题里的第一条。合成用的是 Web Audio：
+            拨弦走 Karplus-Strong 物理建模，簧与擦弦走滤波锯齿加颤音，钟磬是五个非谐分音各自衰减。零音频文件，离线也能响。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <!-- ===== 07 怎么造 ===== -->
+  <section class="section" id="build">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">07 · 从纸面到能响</p>
+          <h2 class="h-section">真要造它，<span class="grad">五步</span>走得通</h2>
+          <p class="lede">顺序很重要：先把声音做出来，再验证人的身体扛不扛得住，最后才动木料与青铜。前两步不用花什么钱，却能挡掉大部分白干。</p>
+        </div>
+      </div>
+      <div class="build" id="buildList" data-stagger></div>
+
+      <div class="sec-head" style="margin-top:var(--sp-8)">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">07b · 它还没有的东西</p>
+          <h2 class="h-section" style="font-size:clamp(22px,3vw,32px)">把话说到底：<span class="grad">它还不存在</span></h2>
+          <p class="lede">一件还不存在的乐器，最大的风险不是被质疑，而是被写得像真的。所以下面这些，一条都不能省。</p>
+        </div>
+      </div>
+      <ul class="honest" id="honestList" data-stagger></ul>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <!-- ===== 08 图纸与素材位 ===== -->
+  <section class="section" id="plates">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">08 · 图纸</p>
+          <h2 class="h-section">现在有的，和<span class="grad">还没有的</span></h2>
+          <p class="lede">四张图都是站内自绘：三张示意图加一张动画，够把结构讲清楚。演奏音频这一格会一直空着，直到真有人把它造出来、坐下来弹一段。</p>
+        </div>
+      </div>
+
+      <figure class="media media--anim media--16x9" data-reveal="scale">
+        <img class="media__el" src="assets/anim/龢-历史演变.svg" alt="「龢」的谱系图：吹弹拉打四类乐器在八千年里汇到一件器上"
+             loading="lazy" decoding="async">
+        <span class="media__tag">ANIM</span>
+        <figcaption class="media__cap">谱系图 · 四条线索怎么汇到第 72 件（历史演变槽位）</figcaption>
+      </figure>
+
+      <figure class="media media--img media--16x9" data-reveal="scale" style="margin-top:var(--sp-6)">
+        <img class="media__el" src="assets/img/龢-场景图.jpg" alt="「龢」场景课件页：龢与礼乐"
+             loading="lazy" decoding="async">
+        <span class="media__tag">IMG</span>
+        <figcaption class="media__cap">场景图 · 课件素材（p16）｜龢与礼乐 —— 取的是与本站第 72 件同名的那件古器</figcaption>
+      </figure>
+
+      <figure class="media media--img media--16x9" data-reveal="scale" style="margin-top:var(--sp-6)">
+        <img class="media__el" src="assets/img/龢-头图.jpg" alt="「龢」教学课件封面页"
+             loading="lazy" decoding="async">
+        <span class="media__tag">IMG</span>
+        <figcaption class="media__cap">课件封面 · 龢教学课件第 01 页</figcaption>
+      </figure>
+
+      <div style="margin-top:var(--sp-6)">
+        <section class="audio-card audio-card--empty">
+          <div class="audio-card__head">
+            <span class="audio-card__tag">AUDIO</span>
+            <div>
+              <p class="audio-card__title">暂无演奏音频 · 未找到</p>
+              <p class="audio-card__sub">「龢」目前不存在于世上，自然也没有人演奏过它 —— 这一格会一直空着，直到真有人把它造出来、坐下来弹一段。</p>
+            </div>
+          </div>
+          <p class="audio-card__note">本站的收录口径：只放<b>公共领域（PD）</b>或<b>知识共享（CC0 / CC BY / CC BY-SA）</b>的录音，
+            并且逐条注明<b>曲名、演奏者、作者、专辑、收录人、日期、时长、许可与原始链接</b>；来路不明或授权不清的一律不放。
+            等它真的被奏响，把录音存成 <code>assets/audio/龢-演奏.mp3</code> 并在 <code>assets/manifest.js</code> 里补上来源信息，这里就会变成播放器；
+            在此之前也可以用 MIDI 把四种发声法编成一段示意曲，放进来时同样标明「合成示意，非真人演奏」。</p>
+        </section>
+      </div>
+
+      <div class="quote" style="margin-top:var(--sp-8)" data-reveal="ink">
+        <div class="quote__inner">
+          <blockquote>八音克谐，无相夺伦，神人以和。</blockquote>
+          <cite>—— 《尚书 · 舜典》</cite>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--sp-6);display:flex;gap:var(--sp-4);flex-wrap:wrap;justify-content:center" data-reveal="up">
+        <a class="btn btn--primary" href="detail.html?id=he" data-magnet="10" data-ripple>
+          <span class="btn__label">进「龢」的详情页
+            <svg class="ico btn__arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+        <a class="btn btn--ghost" href="gallery.html?cat=he" data-magnet="8" data-ripple>
+          <span class="btn__label">在图鉴里看它</span>
+        </a>
+        <a class="btn btn--ghost" href="culture.html#bayin" data-magnet="8" data-ripple>
+          <span class="btn__label">回到八音</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__about">
+      <a class="brand" href="index.html">
+        <span class="brand__seal" aria-hidden="true">乐</span>
+        <span class="brand__text">
+          <span class="brand__cn">中国传统乐器</span>
+          <span class="brand__en">Chinese Traditional Instruments</span>
+        </span>
+      </a>
+      <p>一个面向年轻人的中国传统乐器图鉴。四大类 71 件历史乐器，外加一件按它们的优点推演设计的第 72 件「龢」。图片、动画、视频位置均已预留。</p>
+    </div>
+    <div>
+      <p class="footer__title">Navigate</p>
+      <ul class="footer__list">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="gallery.html">乐器图鉴</a></li>
+        <li><a href="culture.html">八音文化</a></li>
+        <li><a href="he.html">第 72 件 · 龢</a></li>
+        <li><a href="about.html">关于本站</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer__title">Categories</p>
+      <ul class="footer__list">
+        <li><a href="gallery.html?cat=chui">吹管乐器</a></li>
+        <li><a href="gallery.html?cat=tan">弹拨乐器</a></li>
+        <li><a href="gallery.html?cat=la">拉弦乐器</a></li>
+        <li><a href="gallery.html?cat=da">打击乐器</a></li>
+        <li><a href="detail.html?id=he">合鸣新制 · 龢</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer__bottom">
+    <span>© <span id="year">2026</span> 中国传统乐器 · 内容整理自公开资料，仅供学习交流</span>
+    <span>第 72 件为本站设计推演，非历史乐器</span>
+  </div>
+  <div class="wrap footer__credit">
+    <span><b>版权说明</b>：部分来自网络 · 部分 AI 辅助生成 · 部分个人整理，如有错误，敬请见谅。</span>
+    <span>邮箱 <a href="mailto:37864780312@qq.com">37864780312@qq.com</a></span>
+    <span>小红书 <b>哈哈儿</b></span>
+    <span>抖音 <b>哈哈AI工坊</b></span>
+    <span>微信号 <b>哈哈AIGC</b></span>
+    <span><a href="about.html#credits">版权与联系 →</a></span>
+  </div>
+</footer>
+
+<script src="js/pinyin.js"></script>
+<script src="js/data/chui.js"></script>
+<script src="js/data/tan.js"></script>
+<script src="js/data/la.js"></script>
+<script src="js/data/da.js"></script>
+<script src="js/data/he.js"></script>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/he.js"></script>
+</body>
+</html>

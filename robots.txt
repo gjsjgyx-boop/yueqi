@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gjsjgyx-boop.github.io/yueqi/sitemap.xml

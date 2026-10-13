@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#04050A">
+<title>八音文化 · 从骨笛到国潮的八千年 | 中国传统乐器</title>
+<meta name="description" content="八音——金、石、土、革、丝、木、匏、竹：世界上最早的乐器分类法之一。附中国音乐八千年时间轴，从贾湖骨笛到当代国潮。">
+<meta property="og:title" content="八音文化 · 从骨笛到国潮的八千年">
+<meta property="og:description" content="金 · 石 · 土 · 革 · 丝 · 木 · 匏 · 竹，比欧洲早两千年的乐器分类法。">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23F0533A'/%3E%3Ctext x='50' y='72' font-size='68' text-anchor='middle' fill='%23fff' font-family='serif'%3E乐%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<div class="atmos" aria-hidden="true">
+  <span class="atmos__glow atmos__glow--a"></span>
+  <span class="atmos__glow atmos__glow--b"></span>
+  <span class="atmos__glow atmos__glow--c"></span>
+  <span class="atmos__grid"></span>
+</div>
+<canvas id="ink-canvas" aria-hidden="true"></canvas>
+<div class="atmos__grain" aria-hidden="true"></div>
+<div class="atmos__vignette" aria-hidden="true"></div>
+<div class="curtain" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="中国传统乐器 首页">
+    <span class="brand__seal" aria-hidden="true">乐</span>
+    <span class="brand__text">
+      <span class="brand__cn">中国传统乐器</span>
+      <span class="brand__en">Chinese Traditional Instruments</span>
+    </span>
+  </a>
+  <nav class="nav__links" aria-label="主导航">
+    <a class="nav__link" href="index.html">首页</a>
+    <a class="nav__link" href="gallery.html">乐器图鉴</a>
+    <a class="nav__link" href="culture.html">八音文化</a>
+    <a class="nav__link" href="he.html">第 72 件 · 龢</a>
+    <a class="nav__link" href="about.html">关于本站</a>
+  </nav>
+  <a class="nav__cta" href="gallery.html">乐器图鉴 →</a>
+  <button class="nav__burger" aria-label="打开菜单"><span></span></button>
+</header>
+
+<main class="page">
+
+  <!-- ===== 页头 ===== -->
+  <section class="gallery-head">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="面包屑">
+        <a href="index.html">首页</a><span>/</span>八音文化
+      </nav>
+      <p class="eyebrow enter enter--1">Culture · 材料决定的音色</p>
+      <h1 class="h-display" style="font-size:clamp(38px,8vw,88px)">
+        <span class="line-mask"><span>八音</span></span>
+      </h1>
+      <div class="gallery-head__row enter enter--3">
+        <p class="lede">周代人按<b>制作材料</b>把乐器分成八类：金、石、土、革、丝、木、匏、竹。这是世界上最早的乐器分类体系之一——它不问你乐器怎么发声，只问你用什么做的。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 主图：八音关系图（紧跟 banner） ===== -->
+  <section class="section" style="padding-top:clamp(12px,2vw,24px)">
+    <div class="wrap">
+      <div id="bayinAnim"></div>
+    </div>
+  </section>
+
+  <!-- ===== 八音卡 ===== -->
+  <section class="section" id="bayin" style="padding-top:clamp(28px,4vw,52px)">
+    <div class="wrap">
+      <div class="bayin-grid" id="bayinGrid" data-stagger></div>
+
+      <div class="callout" style="--cat:var(--cat-he);margin-top:var(--sp-6)" data-reveal="up">
+        <p class="callout__label">八音之外 · 第 72 件</p>
+        <p>八音里的每一类，都只由一种材料构成 —— 只有一件例外。上面第九张卡片「合」是本站推演设计的第 72 件乐器「龢」：
+          金、石、土、革、丝、木、匏、竹各取九件，全装在同一张器台上，合计七十二件发声体。
+          它不是文物，是一份可以照着做的设计 —— 推导过程、六组冲突的解法与 71 件乐器逐条对照表都在
+          <a href="he.html" style="color:var(--cat-he);border-bottom:1px solid currentColor">设计推演专页</a>。</p>
+      </div>
+
+      <div style="margin-top:var(--sp-7)">
+        <div class="block__head" style="margin-bottom:var(--sp-4)">
+          <span class="block__num">ANIM</span>
+          <h2 class="block__title" id="bayinPrinciplesTitle" style="font-size:19px">八音各自的发声原理</h2>
+          <span class="block__line"></span>
+        </div>
+        <p style="font-size:13.5px;color:var(--bone-3);line-height:1.95;margin-bottom:var(--sp-5);max-width:78ch">
+          八音的分类依据是<b>材料</b>，而材料决定的正是发声方式。下面八张图，一张对应一类：
+          <b>金</b>靠钟体振动、<b>石</b>靠石片、<b>土</b>靠陶胎、<b>革</b>靠张紧的皮面、
+          <b>丝</b>靠弦、<b>木</b>靠板体、<b>匏</b>靠簧与斗、<b>竹</b>靠管内气柱 ——
+          同一记敲击或一口气，在不同的材料上得到完全不同的声音性格。</p>
+        <div id="bayinPrinciples"></div>
+        <p style="font-size:13.5px;color:var(--bone-3);line-height:1.95;margin-top:var(--sp-4);max-width:78ch">
+          木质乐器靠敲击、摩擦与拨动让整体振动，声音短、脆、不拖尾，所以梆子、木鱼、拍板天生适合打点子；
+          换成皮革（革）或金属（金），同一记敲击就会拖出一截余韵 —— 八音之分，说到底是一张声音的性格表。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <!-- ===== 时间轴 ===== -->
+  <section class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">Timeline · 八千年，前八格是历史，最后一格是推演</p>
+          <h2 class="h-section">中国音乐的<span class="grad">八千年</span></h2>
+          <p class="lede">不背年表。只挑八个真正改变了中国乐器走向的节点——从一根钻了孔的鹤骨，到今天电影院里响起的那把二胡。末尾再放上本站的第 72 件「龢」：这条时间轴上唯一还没有发生过的事。</p>
+        </div>
+      </div>
+
+      <div class="timeline" id="timeline" data-stagger></div>
+    </div>
+  </section>
+
+  <!-- ===== 冷门乐器 ===== -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__l" data-reveal="up">
+          <p class="eyebrow">Rare &amp; Ethnic · 大众陌生的那一半</p>
+          <h2 class="h-section">冷门与<span class="grad">少数民族</span>乐器</h2>
+          <p class="lede">筚篥、芒筒、独弦琴、象脚鼓、艾捷克……它们不在考级曲目里，也不常出现在短视频里，但每一件背后都有一整套还活着的音乐生活。</p>
+        </div>
+        <a class="btn btn--ghost" href="gallery.html?rare=1" data-magnet="8" data-reveal="up">
+          <span class="btn__label">只看冷门乐器
+            <svg class="ico btn__arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+      </div>
+
+      <div class="grid" id="rareGrid" data-stagger></div>
+    </div>
+  </section>
+
+  <!-- ===== 视频 + 结语 ===== -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="block__head" style="margin-bottom:var(--sp-4)">
+        <span class="block__num">VIDEO</span>
+        <h2 class="block__title" id="docVideoTitle" style="font-size:19px">入门纪录片</h2>
+        <span class="block__line"></span>
+      </div>
+      <div id="docVideo"></div>
+
+      <div class="quote" style="margin-top:var(--sp-8)" data-reveal="ink">
+        <div class="quote__inner">
+          <blockquote>八音克谐，无相夺伦，神人以和。</blockquote>
+          <cite>—— 《尚书 · 舜典》</cite>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--sp-6);text-align:center" data-reveal="up">
+        <a class="btn btn--primary" href="gallery.html" data-magnet="10" data-ripple>
+          <span class="btn__label">去看全部 72 种乐器
+            <svg class="ico btn__arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__about">
+      <a class="brand" href="index.html">
+        <span class="brand__seal" aria-hidden="true">乐</span>
+        <span class="brand__text">
+          <span class="brand__cn">中国传统乐器</span>
+          <span class="brand__en">Chinese Traditional Instruments</span>
+        </span>
+      </a>
+      <p>一个面向年轻人的中国传统乐器图鉴。四大类 71 件历史乐器，外加一件按它们的优点推演设计的第 72 件「龢」。图片、动画、演奏音频的位置均已预留。</p>
+    </div>
+    <div>
+      <p class="footer__title">Navigate</p>
+      <ul class="footer__list">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="gallery.html">乐器图鉴</a></li>
+        <li><a href="culture.html">八音文化</a></li>
+        <li><a href="he.html">第 72 件 · 龢</a></li>
+        <li><a href="about.html">关于本站</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer__title">Categories</p>
+      <ul class="footer__list">
+        <li><a href="gallery.html?cat=chui">吹管乐器</a></li>
+        <li><a href="gallery.html?cat=tan">弹拨乐器</a></li>
+        <li><a href="gallery.html?cat=la">拉弦乐器</a></li>
+        <li><a href="gallery.html?cat=da">打击乐器</a></li>
+        <li><a href="detail.html?id=he">合鸣新制 · 龢</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer__bottom">
+    <span>© <span id="year">2026</span> 中国传统乐器 · 内容整理自公开资料，仅供学习交流</span>
+    <span><b id="fillCount">17</b> / 72 件已配图 · 其余为占位框 —— 替换即用</span>
+  </div>
+  <div class="wrap footer__credit">
+    <span><b>版权说明</b>：部分来自网络 · 部分 AI 辅助生成 · 部分个人整理，如有错误，敬请见谅。</span>
+    <span>邮箱 <a href="mailto:37864780312@qq.com">37864780312@qq.com</a></span>
+    <span>小红书 <b>哈哈儿</b></span>
+    <span>抖音 <b>哈哈AI工坊</b></span>
+    <span>微信号 <b>哈哈AIGC</b></span>
+    <span><a href="about.html#credits">版权与联系 →</a></span>
+  </div>
+</footer>
+
+<script src="js/pinyin.js"></script>
+<script src="assets/manifest.js"></script>
+<script src="js/vendor/qrcode.js"></script>
+<script src="js/qr.js"></script>
+<script src="js/assets.js"></script>
+<script src="js/data/chui.js"></script>
+<script src="js/data/tan.js"></script>
+<script src="js/data/la.js"></script>
+<script src="js/data/da.js"></script>
+<script src="js/data/he.js"></script>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/culture.js"></script>
+<script src="js/bgm.js"></script>
+</body>
+</html>

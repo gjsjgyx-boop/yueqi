@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#04050A">
+<title>乐器图鉴 · 72 种中国传统乐器 | 中国传统乐器</title>
+<meta name="description" content="中国传统乐器完整图鉴：吹管 18 种、弹拨 17 种、拉弦 17 种、打击 19 种，加一件推演新制，共 72 种。支持分类筛选、冷门乐器筛选与关键词搜索。">
+<meta property="og:title" content="乐器图鉴 · 72 种中国传统乐器">
+<meta property="og:description" content="吹管 · 弹拨 · 拉弦 · 打击，加第 72 件推演新制「龢」，一站看全。">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23F0533A'/%3E%3Ctext x='50' y='72' font-size='68' text-anchor='middle' fill='%23fff' font-family='serif'%3E乐%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<div class="atmos" aria-hidden="true">
+  <span class="atmos__glow atmos__glow--a"></span>
+  <span class="atmos__glow atmos__glow--b"></span>
+  <span class="atmos__glow atmos__glow--c"></span>
+  <span class="atmos__grid"></span>
+</div>
+<canvas id="ink-canvas" aria-hidden="true"></canvas>
+<div class="atmos__grain" aria-hidden="true"></div>
+<div class="atmos__vignette" aria-hidden="true"></div>
+<div class="curtain" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="中国传统乐器 首页">
+    <span class="brand__seal" aria-hidden="true">乐</span>
+    <span class="brand__text">
+      <span class="brand__cn">中国传统乐器</span>
+      <span class="brand__en">Chinese Traditional Instruments</span>
+    </span>
+  </a>
+  <nav class="nav__links" aria-label="主导航">
+    <a class="nav__link" href="index.html">首页</a>
+    <a class="nav__link" href="gallery.html">乐器图鉴</a>
+    <a class="nav__link" href="culture.html">八音文化</a>
+    <a class="nav__link" href="he.html">第 72 件 · 龢</a>
+    <a class="nav__link" href="about.html">关于本站</a>
+  </nav>
+  <a class="nav__cta" href="culture.html">八音文化 →</a>
+  <button class="nav__burger" aria-label="打开菜单"><span></span></button>
+</header>
+
+<main class="page">
+
+  <!-- ===== 页头 ===== -->
+  <section class="gallery-head">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="面包屑">
+        <a href="index.html">首页</a><span>/</span>乐器图鉴
+      </nav>
+      <p class="eyebrow enter enter--1">Gallery · 只有一层分类，直接就是乐器</p>
+      <h1 class="h-display" style="font-size:clamp(38px,8vw,88px)">
+        <span class="line-mask"><span>乐器图鉴</span></span>
+      </h1>
+      <div class="gallery-head__row enter enter--3">
+        <p class="lede">四大类 71 件历史乐器，加一件推演新制，共 <strong id="totalCount">72</strong> 种。按发声方式划分，不设更深的层级——想找哪一种，直接筛或直接搜。</p>
+        <div class="cat-strip" id="catLegend"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 筛选栏 ===== -->
+  <div class="filters">
+    <div class="wrap filters__inner">
+      <div class="filters__tabs" id="tabs" role="tablist" aria-label="按分类筛选"></div>
+      <button class="switch" id="rareSwitch" aria-pressed="false">
+        <span class="switch__dot" aria-hidden="true"></span>
+        <span>只看冷门 / 少数民族</span>
+      </button>
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/>
+        </svg>
+        <input type="search" id="q" placeholder="搜索乐器名、别名、标签…" aria-label="搜索乐器" autocomplete="off">
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 结果 ===== -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="gallery-meta">
+        <span>显示 <strong id="shown">0</strong> / <span id="total">0</span> 种乐器</span>
+        <span id="modeLabel">当前：全部乐器</span>
+      </div>
+
+      <div class="grid" id="grid"></div>
+
+      <div class="empty" id="empty" hidden>
+        <div class="empty__char">空</div>
+        <h3 class="h-card" style="margin-bottom:10px">没有找到匹配的乐器</h3>
+        <p style="color:var(--bone-3);font-size:14px">试试更短的关键词，或者取消"只看冷门"的筛选。</p>
+        <button class="btn btn--ghost" id="resetFilters" style="margin-top:var(--sp-5)" data-ripple>
+          <span class="btn__label">清除全部筛选</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 说明条 ===== -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="callout" data-reveal="up" style="--cat:var(--gold)">
+        <p class="callout__label">About this list</p>
+        <p>本图鉴按<b>发声方式</b>分为吹管、弹拨、拉弦、打击四类，是大众最容易理解的一种划分。中国古代还另有一套按<b>制作材料</b>分类的"八音"体系（金 · 石 · 土 · 革 · 丝 · 木 · 匏 · 竹）——每张卡片上的"<b>×音</b>"标签就来自它，完整解释见 <a href="culture.html" style="color:var(--gold);border-bottom:1px solid currentColor">八音文化</a>。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__about">
+      <a class="brand" href="index.html">
+        <span class="brand__seal" aria-hidden="true">乐</span>
+        <span class="brand__text">
+          <span class="brand__cn">中国传统乐器</span>
+          <span class="brand__en">Chinese Traditional Instruments</span>
+        </span>
+      </a>
+      <p>一个面向年轻人的中国传统乐器图鉴。四大类 71 件历史乐器，外加一件按它们的优点推演设计的第 72 件「龢」。图片、动画、视频位置均已预留。</p>
+    </div>
+    <div>
+      <p class="footer__title">Navigate</p>
+      <ul class="footer__list">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="gallery.html">乐器图鉴</a></li>
+        <li><a href="culture.html">八音文化</a></li>
+        <li><a href="he.html">第 72 件 · 龢</a></li>
+        <li><a href="about.html">关于本站</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer__title">Categories</p>
+      <ul class="footer__list">
+        <li><a href="gallery.html?cat=chui">吹管乐器</a></li>
+        <li><a href="gallery.html?cat=tan">弹拨乐器</a></li>
+        <li><a href="gallery.html?cat=la">拉弦乐器</a></li>
+        <li><a href="gallery.html?cat=da">打击乐器</a></li>
+        <li><a href="detail.html?id=he">合鸣新制 · 龢</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer__bottom">
+    <span>© <span id="year">2026</span> 中国传统乐器 · 内容整理自公开资料，仅供学习交流</span>
+    <span><b id="fillCount">17</b> / 72 件已配图 · 其余为占位框 —— 替换即用</span>
+  </div>
+  <div class="wrap footer__credit">
+    <span><b>版权说明</b>：部分来自网络 · 部分 AI 辅助生成 · 部分个人整理，如有错误，敬请见谅。</span>
+    <span>邮箱 <a href="mailto:37864780312@qq.com">37864780312@qq.com</a></span>
+    <span>小红书 <b>哈哈儿</b></span>
+    <span>抖音 <b>哈哈AI工坊</b></span>
+    <span>微信号 <b>哈哈AIGC</b></span>
+    <span><a href="about.html#credits">版权与联系 →</a></span>
+  </div>
+</footer>
+
+<script src="js/pinyin.js"></script>
+<script src="assets/manifest.js"></script>
+<script src="js/assets.js"></script>
+<script src="js/data/chui.js"></script>
+<script src="js/data/tan.js"></script>
+<script src="js/data/la.js"></script>
+<script src="js/data/da.js"></script>
+<script src="js/data/he.js"></script>
+<script src="js/data.js"></script>
+<script src="assets/pdf-manifest.js"></script>
+<script src="js/pdf.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/gallery.js"></script>
+<script src="js/bgm.js"></script>
+</body>
+</html>

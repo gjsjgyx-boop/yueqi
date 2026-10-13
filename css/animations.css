@@ -1,0 +1,313 @@
+/* ==========================================================================
+   中国传统乐器 · 动画层
+   --------------------------------------------------------------------------
+   A. 关键帧
+   B. 滚动入场（data-reveal）
+   C. 交错延迟（data-stagger）
+   D. 首屏入场编排
+   E. 交互特效（3D 倾斜 / 磁吸 / 涟漪 / 描边）
+   ========================================================================== */
+
+/* ---------- A. 关键帧 -------------------------------------------------- */
+
+@keyframes drift-a {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  33%  { transform: translate3d(6vw, 4vh, 0) scale(1.12); }
+  66%  { transform: translate3d(-3vw, 7vh, 0) scale(0.94); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes drift-b {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  40%  { transform: translate3d(-7vw, -5vh, 0) scale(1.16); }
+  75%  { transform: translate3d(4vw, -2vh, 0) scale(0.92); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes scroll-hint {
+  0%   { top: -50%; opacity: 0; }
+  30%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+@keyframes wave-bar {
+  0%, 100% { transform: scaleY(0.35); }
+  50%      { transform: scaleY(1); }
+}
+@keyframes ph-scan {
+  0%   { top: -36%; opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+@keyframes seal-pulse {
+  0%, 100% { box-shadow: 0 0 34px -8px var(--cat), inset 0 0 26px -14px var(--cat); }
+  50%      { box-shadow: 0 0 52px -4px var(--cat), inset 0 0 34px -8px var(--cat); }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes glow-breathe {
+  0%, 100% { opacity: .5; }
+  50%      { opacity: 1; }
+}
+@keyframes ink-blot {
+  0%   { clip-path: circle(0% at 50% 50%); opacity: 0; }
+  100% { clip-path: circle(150% at 50% 50%); opacity: 1; }
+}
+@keyframes line-up {
+  from { transform: translateY(105%) rotate(4deg); opacity: 0; }
+  to   { transform: translateY(0) rotate(0); opacity: 1; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes ripple-out {
+  from { transform: scale(0.2); opacity: .7; }
+  to   { transform: scale(2.4); opacity: 0; }
+}
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+@keyframes caret-blink {
+  0%, 45%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* ---------- B. 滚动入场 ------------------------------------------------- */
+
+/* 元素初始隐藏；main.js 用 IntersectionObserver 加 .is-in
+   注意：不要在"被观测的元素自身"上使用 clip-path: circle(0%)，
+   那会把它的 intersection rect 变成空集，IntersectionObserver 将永远
+   返回 isIntersecting:false —— 元素就再也揭不开了。
+   墨点揭示因此交给内部的 .quote__inner 承担。 */
+[data-reveal] {
+  opacity: 0;
+  transition:
+    opacity .85s var(--ease-out),
+    transform .95s var(--ease-out),
+    filter .95s var(--ease-out);
+}
+[data-reveal="up"]     { transform: translateY(38px); }
+[data-reveal="down"]   { transform: translateY(-30px); }
+[data-reveal="left"]   { transform: translateX(-46px); }
+[data-reveal="right"]  { transform: translateX(46px); }
+[data-reveal="scale"]  { transform: scale(0.93); }
+[data-reveal="blur"]   { filter: blur(12px); transform: translateY(20px); }
+[data-reveal="ink"]    { transform: translateY(18px); }
+[data-reveal="tilt-in"]{ transform: perspective(900px) rotateY(9deg) translateY(30px); }
+
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* 墨点揭幕：只裁剪内层，外层保持可被观测 */
+[data-reveal="ink"] .quote__inner {
+  clip-path: circle(0% at 50% 60%);
+  transition: clip-path 1.15s var(--ease-out);
+}
+[data-reveal="ink"].is-in .quote__inner {
+  clip-path: circle(150% at 50% 60%);
+}
+/* 若 .quote 内没有包裹层，则退化为普通淡入（不会卡在不可见状态） */
+[data-reveal="ink"]:not(:has(.quote__inner)) { opacity: 1; transform: none; }
+
+/* 标题逐行揭示 */
+.line-mask { display: block; overflow: hidden; }
+.line-mask > * {
+  display: block;
+  transform: translateY(105%) rotate(3deg);
+  opacity: 0;
+  transition: transform 1.05s var(--ease-out), opacity .8s var(--ease-out);
+}
+.line-mask.is-in > * { transform: none; opacity: 1; }
+
+/* 渐变描边文字（逐步点亮） */
+.shine {
+  background: linear-gradient(100deg,
+    var(--bone-4) 0%, var(--bone-4) 38%,
+    var(--bone) 50%,
+    var(--bone-4) 62%, var(--bone-4) 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.shine.is-in { animation: shimmer 2.6s var(--ease-out) 1; }
+
+/* ---------- C. 交错延迟 ------------------------------------------------- */
+
+[data-stagger] > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .7s var(--ease-out), transform .8s var(--ease-out);
+}
+[data-stagger].is-in > * { opacity: 1; transform: none; }
+
+[data-stagger].is-in > *:nth-child(1)  { transition-delay: .04s; }
+[data-stagger].is-in > *:nth-child(2)  { transition-delay: .09s; }
+[data-stagger].is-in > *:nth-child(3)  { transition-delay: .14s; }
+[data-stagger].is-in > *:nth-child(4)  { transition-delay: .19s; }
+[data-stagger].is-in > *:nth-child(5)  { transition-delay: .24s; }
+[data-stagger].is-in > *:nth-child(6)  { transition-delay: .29s; }
+[data-stagger].is-in > *:nth-child(7)  { transition-delay: .34s; }
+[data-stagger].is-in > *:nth-child(8)  { transition-delay: .39s; }
+[data-stagger].is-in > *:nth-child(9)  { transition-delay: .44s; }
+[data-stagger].is-in > *:nth-child(10) { transition-delay: .49s; }
+[data-stagger].is-in > *:nth-child(11) { transition-delay: .54s; }
+[data-stagger].is-in > *:nth-child(12) { transition-delay: .59s; }
+[data-stagger].is-in > *:nth-child(n+13) { transition-delay: .64s; }
+
+/* 更长列表的快速交错（图鉴网格用 JS 内联 delay，见 gallery.js） */
+
+/* ---------- D. 首屏入场编排 -------------------------------------------- */
+
+.enter { opacity: 0; animation: fade-up .9s var(--ease-out) forwards; }
+.enter--1 { animation-delay: .05s; }
+.enter--2 { animation-delay: .16s; }
+.enter--3 { animation-delay: .27s; }
+.enter--4 { animation-delay: .38s; }
+.enter--5 { animation-delay: .49s; }
+.enter--6 { animation-delay: .60s; }
+.enter--7 { animation-delay: .71s; }
+.enter--8 { animation-delay: .82s; }
+
+.hero__title .line > span {
+  animation: line-up 1.15s var(--ease-out) both;
+}
+.hero__title .line:nth-child(1) > span { animation-delay: .18s; }
+.hero__title .line:nth-child(2) > span { animation-delay: .30s; }
+
+.hero__calli span {
+  animation: fade-in .9s var(--ease-out) both;
+}
+.hero__calli span:nth-child(1) { animation-delay: .55s; }
+.hero__calli span:nth-child(2) { animation-delay: .68s; }
+.hero__calli span:nth-child(3) { animation-delay: .81s; }
+.hero__calli span:nth-child(4) { animation-delay: .94s; }
+
+/* 呼吸光晕 */
+.breathe { animation: glow-breathe 4.5s var(--ease-in-out) infinite; }
+.float   { animation: float-y 6s var(--ease-in-out) infinite; }
+
+/* ---------- E. 交互特效 ------------------------------------------------ */
+
+/* 3D 倾斜（main.js 写入 --rx/--ry） */
+.tilt {
+  transform: perspective(1000px)
+             rotateX(var(--rx, 0deg))
+             rotateY(var(--ry, 0deg))
+             translateZ(0);
+  transition: transform .5s var(--ease-out), border-color .45s, box-shadow .5s;
+}
+.tilt.is-tracking { transition: transform .08s linear, border-color .45s, box-shadow .5s; }
+/* 内部浮起层 */
+.tilt__lift { transform: translateZ(38px); }
+
+/* 磁吸按钮 */
+.magnet { transition: transform .45s var(--ease-out); }
+
+/* 点击涟漪 */
+.ripple-host { position: relative; overflow: hidden; }
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.36), transparent 70%);
+  pointer-events: none;
+  animation: ripple-out .72s var(--ease-out) forwards;
+  z-index: 5;
+}
+
+/* 鼠标跟随光斑（卡片上的类色光晕） */
+.spot {
+  position: absolute;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--cat, var(--gold)) 22%, transparent), transparent 65%);
+  transition: opacity .4s var(--ease-out);
+}
+.spot.is-on { opacity: 1; }
+
+/* 卡片入场（图鉴网格逐个） */
+.grid-item-in {
+  animation: fade-up .68s var(--ease-out) both;
+}
+
+/* 筛选切换时的网格淡入 */
+.grid.is-swapping { opacity: .35; transform: translateY(6px); }
+.grid { transition: opacity .3s var(--ease-out), transform .3s var(--ease-out); }
+
+/* 文字闪烁光标（终端风格，用于小标签） */
+.caret::after {
+  content: '';
+  display: inline-block;
+  width: 7px; height: 1em;
+  background: var(--jade);
+  margin-left: 3px;
+  vertical-align: -0.12em;
+  animation: caret-blink 1.1s step-end infinite;
+}
+
+/* 悬停时描边点亮（针对标题字） */
+.stroke-hover {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-3);
+  transition: color .45s var(--ease-out), -webkit-text-stroke-color .45s;
+}
+.stroke-hover:hover {
+  color: var(--gold);
+  -webkit-text-stroke-color: transparent;
+}
+
+/* 分类色光条生长 */
+.grow-line {
+  height: 1px;
+  background: var(--cat, var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .8s var(--ease-out);
+}
+.is-in .grow-line { transform: scaleX(1); }
+
+/* 数字滚动（counter）用的等宽 */
+.count { font-variant-numeric: tabular-nums; }
+
+/* 墨点涟漪装饰（点击画布时生成） */
+.ink-ripple {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 4;
+  border: 1px solid rgba(240, 83, 58, 0.55);
+  animation: ripple-out 1.5s var(--ease-out) forwards;
+}
+
+/* 页面加载墨晕遮罩 */
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: var(--ink-0);
+  pointer-events: none;
+  animation: fade-in .18s reverse forwards;
+  animation-delay: 0s;
+}
+.curtain--out { animation: fade-in .6s var(--ease-out) reverse forwards; }
